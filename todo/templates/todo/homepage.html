@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDo-App</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Item</th>
+    </tr>
+    {% for task in tasks %}
+        <tr>
+            <td>{{ task.title }}</td>
+        </tr>
+    {% empty %}
+        <h3>No Item</h3>
+    {% endfor %}
+
+</table>
+</body>
+</html>
