@@ -5,6 +5,14 @@
     <title>ToDo-Приложение</title>
 </head>
 <body>
+
+{% if request.user.is_authenticated %}
+    <p>{{ request.user }}</p>
+    <a href="{% url 'logout' %}">Выйти</a>
+{% else %}
+    <a href="{% url 'login' %}">Войти</a>
+{% endif %}
+<hr>
 <h1>To-Do список</h1>
 <a href="{% url 'create' %}">Создать задачу</a>
 <table>
