@@ -22,6 +22,12 @@ class TaskList(LoginRequiredMixin, ListView):
     template_name = 'todo/homepage.html'
     context_object_name = 'tasks'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tasks'] = context['tasks'].filter(user=self.request.user)
+        context['count'] = context['tasks'].filter(complete=False)
+        return context
+
 
 class TaskDetail(LoginRequiredMixin, DetailView):
     model = Task
@@ -31,8 +37,13 @@ class TaskDetail(LoginRequiredMixin, DetailView):
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
     template_name = 'todo/create.html'
-    fields = '__all__'
+    fields = ['title', 'description', 'complete']
     success_url = reverse_lazy('list')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+
+        return super(TaskCreate, self).form_valid(form)
 
 
 class TaskUpdate(LoginRequiredMixin, UpdateView):
