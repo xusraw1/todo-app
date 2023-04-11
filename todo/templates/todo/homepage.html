@@ -2,19 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ToDo-App</title>
+    <title>ToDo-Приложение</title>
 </head>
 <body>
+<h1>To-Do список</h1>
+<a href="{% url 'create' %}">Создать задачу</a>
 <table>
     <tr>
-        <th>Item</th>
+        <th>Элемент</th>
+        <th></th>
     </tr>
     {% for task in tasks %}
         <tr>
             <td>{{ task.title }}</td>
+            <td><a href="{% url 'detail' task.pk %}">Посмотреть подробно</a></td>
+            <td><a href="{% url 'update' task.pk %}">Обновить запись</a></td>
+            <td><a href="{% url 'delete' task.pk %}">Удалить запись</a></td>
         </tr>
     {% empty %}
-        <h3>No Item</h3>
+        <h3>Ваш список задач пуст!</h3>
     {% endfor %}
 
 </table>

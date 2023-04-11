@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class Task(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField("Загаловок", max_length=70)
-    description = models.CharField("Описание", max_length=500)
+    description = models.TextField("Описание", max_length=500)
     complete = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True)
 
