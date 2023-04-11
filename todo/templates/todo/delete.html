@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>УДАЛЕНИЕ</title>
-</head>
-<body>
-<h1>Удаление записи</h1>
-<a href="{% url 'list' %}">Домой</a>
-<form method="post">{% csrf_token %}
-    <p>Ты уверен что хочешь удалить эту задачу? "{{ task }}"</p>
-    <button type="submit">Удалить</button>
-</form>
-</body>
-</html>
+{% extends 'todo/base.html' %}
+{% block title %}Удаление{% endblock %}
+{% block content %}
+
+    <div class="header-bar">
+        <a href="{% url 'list' %}">&#8592; Домой</a>
+    </div>
+
+
+    <div class="card-body">
+        <form method="post">{% csrf_token %}
+            <p>Ты уверен что хочешь удалить эту задачу? "{{ task }}"</p>
+            <input class="button" type="submit" value="Удалить">
+        </form>
+    </div>
+{% endblock %}

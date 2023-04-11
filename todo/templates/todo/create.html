@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>СОЗДАНИЕ</title>
-</head>
-<body>
-<h1>Создание задачи</h1>
-<a href="{% url 'list' %}">К списку дел</a>
-<form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Сохранить"> | <input type="reset" value="Сбросить">
-</form>
-</body>
-</html>
+{% extends 'todo/base.html' %}
+{% block title %}Создание {% endblock %}
+{% block content %}
+    <div class="header-bar">
+        <a href="{% url 'list' %}">&#8592; Назад</a>
+    </div>
+
+
+
+    <div class="card-body">
+        <form action="" method="post">{% csrf_token %}
+            {{ form.as_p }}
+            <input class="button" type="submit" value="Сохранить">
+        </form>
+    </div>
+
+{% endblock %}

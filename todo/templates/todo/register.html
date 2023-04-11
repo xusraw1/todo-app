@@ -1,17 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>РЕГИСТРАЦИЯ</title>
-</head>
-<body>
-<h1>Войти</h1>
-<form action="" method="post">{% csrf_token %}
+{% extends 'todo/base.html' %}
+{% block title %}Регистрация{% endblock %}
+{% block content %}
 
-    {{ form.as_p }}
-    <input type="submit" value="Регистрация">
+    <div class="header-top">
+        <h1>Регистрация</h1>
+    </div>
+    <div class="card-body">
+        <form action="" method="post">{% csrf_token %}
+            <label>{{ form.username.label }}</label>
+            {{ form.username }}
+            <label>{{ form.passwor1.label }}</label>
+            {{ form.password1 }}
+            <label>{{ form.password2.label }}</label>
+            {{ form.password2 }}
+            <input style="margin-top: 10px" class="button" type="submit" value="Регистрация">
+            <p>У вас есть аккаунт на нашем сайте? <a href="{% url 'login' %}">Войти</a></p>
+        </form>
+    </div>
 
-</form>
-<p>У вас есть аккаунт на нашем сайте? <a href="{% url 'login' %}">Войти</a></p>
-</body>
-</html>
+{% endblock %}
